@@ -1,43 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".MainActivity">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hacolor"
+    android:textSize="60dp"
+    android:layout_centerHorizontal="true"
+    android:fontFamily="@font/irish_grover"/>
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:text="@string/title"
-            android:textColor="#000"
-            android:textAlignment="center"
-            android:textSize="60sp" />
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageButton"
+        android:src="@drawable/lion"/>
 
-        <TableRow
-            android:layout_marginTop="100dp"
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:horizontalSpacing="30dp"
+        android:numColumns="2"
+        android:verticalSpacing="30dp">
 
-            android:orientation="horizontal">
-
-            <GridView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" >
-
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/fish"
-                    android:contentDescription="TODO"
-                    />
-            </GridView>
-        </TableRow>
-    </TableLayout>
-
-
-</ScrollView>
+    </GridView>
+</RelativeLayout>
