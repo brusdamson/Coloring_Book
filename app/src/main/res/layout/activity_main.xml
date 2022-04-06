@@ -6,17 +6,36 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".MainActivity">
+
     <TableLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TableRow>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="qwe"
-                android:textSize="60dp"
-                android:textAlignment="center"
-                />
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:text="@string/title"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:textSize="60sp" />
+
+        <TableRow
+            android:layout_marginTop="100dp"
+
+            android:orientation="horizontal">
+
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" >
+
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/fish"
+                    android:contentDescription="TODO"
+                    />
+            </GridView>
         </TableRow>
     </TableLayout>
 
