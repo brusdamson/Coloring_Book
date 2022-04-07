@@ -9,18 +9,10 @@
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Hacolor"
-    android:textSize="60dp"
+    android:text="@string/title"
+    android:textSize="60sp"
     android:layout_centerHorizontal="true"
     android:fontFamily="@font/irish_grover"/>
-
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerCrop"
-        android:id="@+id/imageButton"
-        android:src="@drawable/lion"/>
 
     <GridView
         android:layout_width="wrap_content"
@@ -28,7 +20,8 @@
         android:layout_marginTop="90dp"
         android:horizontalSpacing="30dp"
         android:numColumns="2"
-        android:verticalSpacing="30dp">
+        android:verticalSpacing="30dp"
+        android:id="@+id/gridview">
 
     </GridView>
 </RelativeLayout>
