@@ -79,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (convertView == null) {
                 mImageView = new ImageView(mContext);
-                mImageView.setLayoutParams(new GridView.LayoutParams(130, 130));
+                mImageView.setLayoutParams(new GridView.LayoutParams(400, 600));
                 mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                mImageView.setBackgroundColor(getResources().getColor(R.color.white));
                 mImageView.setPadding(16, 16, 16, 16);
+
             } else {
                 mImageView = (ImageView) convertView;
             }

@@ -2,4 +2,8 @@
     <string name="app_name">Coloring Book</string>
     <string name="title">Hacolor</string>
     <string name="fish_image" />
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
