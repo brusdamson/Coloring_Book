@@ -37,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
         androidGridView = (GridView) findViewById(R.id.gridview);
         androidGridView.setAdapter(new ImageAdapterGridView(this));
 
+        int a = imageIDs[1];
         androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,
                                     View v, int position, long id) {
-                Toast.makeText(getBaseContext(), "Grid Item " + (position + 1) + " Selected", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+                intent.putExtra("id",imageIDs[position]);
+                startActivity(intent);
             }
         });
 
