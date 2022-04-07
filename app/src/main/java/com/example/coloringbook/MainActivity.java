@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 mImageView.setBackgroundColor(getResources().getColor(R.color.white));
                 mImageView.setPadding(16, 16, 16, 16);
 
+
             } else {
                 mImageView = (ImageView) convertView;
             }
