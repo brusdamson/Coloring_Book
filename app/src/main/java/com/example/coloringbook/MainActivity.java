@@ -1,6 +1,7 @@
 package com.example.coloringbook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,15 +20,6 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.larvalabs.svgandroid.SVG;
-import com.larvalabs.svgandroid.SVGParseException;
-import com.larvalabs.svgandroid.SVGParser;
-
-import org.xmlpull.v1.XmlPullParser;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 mImageView = new ImageView(mContext);
                 mImageView.setLayoutParams(new GridView.LayoutParams(400, 600));
                 mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                mImageView.setBackgroundColor(getResources().getColor(R.color.white));
+                mImageView.setBackground(AppCompatResources.getDrawable(mContext,R.drawable.border));
                 mImageView.setPadding(16, 16, 16, 16);
-
 
             } else {
                 mImageView = (ImageView) convertView;
