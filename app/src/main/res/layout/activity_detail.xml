@@ -15,7 +15,7 @@
         />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView"
         android:layout_width="323dp"
         android:layout_height="612dp"
         android:layout_centerInParent="true"
