@@ -8,10 +8,10 @@
 
     <ImageButton
         style="@style/backButtonStyle"
-        android:layout_width="81dp"
-        android:layout_height="81dp"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
         android:src="@drawable/back_button"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         />
 
     <ImageView
