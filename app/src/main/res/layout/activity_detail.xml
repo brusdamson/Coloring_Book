@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
-    <ImageButton
-        style="@style/backButtonStyle"
-        android:layout_width="71dp"
-        android:layout_height="71dp"
-        android:src="@drawable/back_button"
-        android:scaleType="centerInside"
-        />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="323dp"
@@ -22,5 +14,6 @@
         android:layout_marginLeft="19dp"
         android:layout_marginTop="84dp"
         android:layout_marginRight="18dp"
-        android:layout_marginBottom="104dp" />
+        android:layout_marginBottom="104dp"
+        />
 </RelativeLayout>
