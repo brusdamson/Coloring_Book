@@ -8,4 +8,22 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#B5B3B3</color>
+
+    <array name="colors_array">
+        <item>#FF0000</item>
+        <item>#CDDC39</item>
+        <item>#2196F3</item>
+        <item>#9C27B0</item>
+        <item>#FF9800</item>
+        <item>#009688</item>
+        <item>#3F51B5</item>
+        <item>#673AB7</item>
+        <item>#00BCD4</item>
+        <item>#68483E</item>
+        <item>#BD8888</item>
+        <item>#615959</item>
+        <item>#EFAFAF</item>
+    </array>
+
+
 </resources>
