@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ColoringBook">
         <activity
+            android:name=".PaintActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false"
             android:label="@string/title_activity_detail" />

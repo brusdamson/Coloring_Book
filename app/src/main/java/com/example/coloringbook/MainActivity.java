@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.lion, R.drawable.olenb, R.drawable.olenb2,
             R.drawable.one, R.drawable.tiger, R.drawable.example
     };
+
+    private ImageOnClick imageOnClick;
+
+    public void setImageOnClick(ImageOnClick imageOnClick) {
+        this.imageOnClick = imageOnClick;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
         androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent,
                                     View v, int position, long id) {
-                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
-                intent.putExtra("id",imageIDs[position]);
+//                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+//                intent.putExtra("id",imageIDs[position]);
+//                startActivity(intent);
+                Common.PICTURE_SELECTED = imageIDs[position];
+                Intent intent = new Intent(MainActivity.this, PaintActivity.class);
                 startActivity(intent);
             }
         });
