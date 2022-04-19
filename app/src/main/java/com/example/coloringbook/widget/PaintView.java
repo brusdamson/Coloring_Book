@@ -34,8 +34,9 @@ public class PaintView extends View {
     private ScaleGestureDetector mScaleDetector;
     private float mScaleFactor = 1.0f;
     private final static float mMinZoom = 1.0f;
-    private final static float mMaxZoom = 5.0f;
-
+    private final static float mMaxZoom = 2.0f;
+    float oldX;
+    float oldY;
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
@@ -103,9 +104,6 @@ public class PaintView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int centreX = (canvas.getWidth()  - bitmap.getWidth()) /2;
-
-        int centreY = (canvas.getHeight() - bitmap.getHeight()) /2;
         drawBitmap(canvas);
     }
 
@@ -119,19 +117,16 @@ public class PaintView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getX() > bitmap.getWidth() || event.getX() < 0)
-            return true;
-        if(event.getY() > bitmap.getHeight() || event.getY() < 0)
-            return true;
-        paint((int)event.getX(),(int)event.getY());
-
         mScaleDetector.onTouchEvent(event);
         switch (event.getAction()){
+            case MotionEvent.ACTION_UP:
+                paint((int)((refX - mPositionX) / mScaleFactor), (int)((refY - mPositionY) / mScaleFactor),oldX,oldY);
+                break;
             case MotionEvent.ACTION_DOWN:
                 refX = event.getX();
                 refY = event.getY();
-
-                paint((int)((refX - mPositionX) / mScaleFactor), (int)((refY - mPositionY) / mScaleFactor));
+                oldX = refX;
+                oldY = refY;
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -149,7 +144,14 @@ public class PaintView extends View {
         return true;
     }
 
-    private void paint(int x, int y) {
+    private void paint(int x, int y, float oldx, float oldy) {
+        if(x > bitmap.getWidth() || x < 0)
+            return;
+        if(y > bitmap.getHeight() || y < 0)
+            return;
+        if (oldx != refX || oldy != refY){
+            return;
+        }
         int targetColor = bitmap.getPixel(x,y);
         FloodFill f = new FloodFill();
         f.floodFill(bitmap, new Point(x,y), targetColor, Common.COLOR_SELECTED);
