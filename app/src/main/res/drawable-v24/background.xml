@@ -9,7 +9,7 @@
         android:fillColor="#f1f2f6"
         android:pathData="M 0 0 H 360 V 640 H 0 V 0 Z" />
     <path
-        android:fillColor="#b6bbd0"
+        android:fillColor="#77acf1"
         android:pathData="M 0 360 C 0 360 23.71 243.984 64.417 206.089 C 115.222 158.794 251.127 168.879 306.749 127.357 C 352.352 93.314 360 0 360 0 L -0.227 -0.227 L 0 0 L 0 360 Z" />
     <path
         android:fillColor="#ffffff"

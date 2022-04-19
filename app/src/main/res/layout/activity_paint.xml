@@ -30,6 +30,9 @@
         app:spectrum_autoPadding="true"
         app:spectrum_outlineWidth="2dp"
         app:spectrum_colors="@array/colors_array"
-        android:id="@+id/palette"/>
+        android:id="@+id/palette">
+
+    </com.thebluealliance.spectrum.SpectrumPalette>
+
 
 </LinearLayout>

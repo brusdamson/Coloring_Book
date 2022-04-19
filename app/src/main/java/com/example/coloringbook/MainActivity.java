@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Integer[] imageIDs = {
             R.drawable.bear, R.drawable.bla, R.drawable.horse,
             R.drawable.lion, R.drawable.olenb, R.drawable.olenb2,
-            R.drawable.one, R.drawable.tiger, R.drawable.example
+            R.drawable.one, R.drawable.tiger,
     };
 
     private ImageOnClick imageOnClick;

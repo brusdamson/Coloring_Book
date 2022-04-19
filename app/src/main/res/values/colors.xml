@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#B5B3B3</color>
-
+    <color name="hacolor_color">#77acf1</color>
     <array name="colors_array">
         <item>#FF0000</item>
         <item>#CDDC39</item>

@@ -92,7 +92,7 @@ public class PaintActivity extends AppCompatActivity implements SpectrumPalette.
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST);
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Сохранить изобрадение?");
+            builder.setTitle("Сохранить изображение?");
             builder.setNegativeButton("НЕТ", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -140,5 +140,9 @@ public class PaintActivity extends AppCompatActivity implements SpectrumPalette.
     @Override
     public void onColorSelected(int color) {
         Common.COLOR_SELECTED = color;
+    }
+
+    public void undoLast(View view) {
+        paintView.undoLastAction();
     }
 }
