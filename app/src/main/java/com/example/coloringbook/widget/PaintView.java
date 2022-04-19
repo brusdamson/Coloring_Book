@@ -13,6 +13,7 @@ import android.print.PrintAttributes;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -28,6 +29,24 @@ public class PaintView extends View {
 
     Bitmap bitmap;
     Canvas currentCanvas;
+    private float mPositionX, mPositionY;
+    private float refX, refY;
+    private ScaleGestureDetector mScaleDetector;
+    private float mScaleFactor = 1.0f;
+    private final static float mMinZoom = 1.0f;
+    private final static float mMaxZoom = 5.0f;
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+
+            mScaleFactor *= detector.getScaleFactor();
+            mScaleFactor = Math.max(mScaleFactor, Math.min(mScaleFactor, mMaxZoom));
+            invalidate();
+
+            return true;
+        }
+    }
 
     public PaintView(Context context) {
         super(context);
@@ -35,7 +54,9 @@ public class PaintView extends View {
 
     public PaintView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
     }
+
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -85,7 +106,15 @@ public class PaintView extends View {
         int centreX = (canvas.getWidth()  - bitmap.getWidth()) /2;
 
         int centreY = (canvas.getHeight() - bitmap.getHeight()) /2;
-        canvas.drawBitmap(bitmap, centreX, centreY, null);
+        drawBitmap(canvas);
+    }
+
+    private void drawBitmap(Canvas canvas) {
+        canvas.save();
+        canvas.translate(mPositionX, mPositionY);
+        canvas.scale(mScaleFactor, mScaleFactor);
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        canvas.restore();
     }
 
     @Override
@@ -95,6 +124,28 @@ public class PaintView extends View {
         if(event.getY() > bitmap.getHeight() || event.getY() < 0)
             return true;
         paint((int)event.getX(),(int)event.getY());
+
+        mScaleDetector.onTouchEvent(event);
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                refX = event.getX();
+                refY = event.getY();
+
+                paint((int)((refX - mPositionX) / mScaleFactor), (int)((refY - mPositionY) / mScaleFactor));
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                float nX = event.getX();
+                float nY = event.getY();
+
+                mPositionX += nX - refX;
+                mPositionY += nY - refY;
+
+                refX = nX;
+                refY = nY;
+
+                invalidate();
+        }
         return true;
     }
 

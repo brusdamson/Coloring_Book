@@ -21,6 +21,9 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.coloringbook.Interface.ImageOnClick;
+import com.example.coloringbook.common.Common;
+
 public class MainActivity extends AppCompatActivity {
 
     GridView androidGridView;
