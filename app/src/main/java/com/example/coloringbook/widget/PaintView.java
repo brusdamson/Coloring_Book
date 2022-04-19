@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.DrawFilter;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -23,6 +24,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
+import com.example.coloringbook.PaintActivity;
+import com.example.coloringbook.R;
 import com.example.coloringbook.common.Common;
 
 import java.util.ArrayList;
@@ -111,7 +114,7 @@ public class PaintView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         if (bitmap == null){
             Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), Common.PICTURE_SELECTED);
-            bitmap = Bitmap.createScaledBitmap(srcBitmap, w, h, false);//scaleCenterCrop(srcBitmap, h, w);
+            bitmap = scaleCenterCrop(srcBitmap, h-600, w);
             for (int i = 0; i < bitmap.getWidth(); i++) {
                 for (int j = 0; j < bitmap.getHeight(); j++) {
                     if (bitmap.getPixel(i,j) <= Color.BLACK){
@@ -128,7 +131,7 @@ public class PaintView extends View {
         }
     }
 
-    static public Bitmap scaleCenterCrop(Bitmap source, int newHeight,
+     public Bitmap scaleCenterCrop(Bitmap source, int newHeight,
                                          int newWidth) {
         int sourceWidth = source.getWidth();
         int sourceHeight = source.getHeight();
@@ -143,7 +146,6 @@ public class PaintView extends View {
 
         float left = (newWidth - scaledWidth) / 2;
         float top = (newHeight - scaledHeight) / 2;
-
         RectF targetRect = new RectF(left, top, left + scaledWidth, top
                 + scaledHeight);//from ww w  .j a va 2s. co m
 
@@ -155,13 +157,15 @@ public class PaintView extends View {
         ColorMatrix cm = new ColorMatrix();
         cm.setSaturation(0);
         paint.setColorFilter(new ColorMatrixColorFilter(cm));
-        canvas.drawBitmap(source, null, targetRect, paint);
+
+        canvas.drawBitmap(source, null, targetRect, null);
 
         return dest;
     }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         drawBitmap(canvas);
     }
 
