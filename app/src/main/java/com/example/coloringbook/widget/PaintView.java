@@ -6,9 +6,16 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.media.ThumbnailUtils;
+import android.print.PrintAttributes;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -34,13 +41,51 @@ public class PaintView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), Common.PICTURE_SELECTED);
-        bitmap = Bitmap.createScaledBitmap(srcBitmap, w,h,false);
-    }
+//        PaintView paintView = findViewById(R.id.paint_view);
+//        ViewGroup.LayoutParams params = paintView.getLayoutParams();
+//        params.width = (int)(paintView.getResources().getDisplayMetrics().density * 400);
+//        params.height = (int)(paintView.getResources().getDisplayMetrics().density * 50);
+//        paintView.setLayoutParams(params);
 
+
+//        int width = (int)(this.getResources().getDisplayMetrics().density*400);
+//        int height = (int)(this.getResources().getDisplayMetrics().density*400);
+//        bitmap = Bitmap.createScaledBitmap(srcBitmap, w,h,false);
+        bitmap = scaleCenterCrop(srcBitmap, h, w);
+    }
+    static public Bitmap scaleCenterCrop(Bitmap source, int newHeight,
+                                         int newWidth) {
+        int sourceWidth = source.getWidth();
+        int sourceHeight = source.getHeight();
+
+        float xScale = (float) newWidth / sourceWidth;
+        float yScale = (float) newHeight / sourceHeight;
+        float scale = Math.max(xScale, yScale);
+
+        // Now get the size of the source bitmap when scaled
+        float scaledWidth = scale * sourceWidth;
+        float scaledHeight = scale * sourceHeight;
+
+        float left = (newWidth - scaledWidth) / 2;
+        float top = (newHeight - scaledHeight) / 2;
+
+        RectF targetRect = new RectF(left, top, left + scaledWidth, top
+                + scaledHeight);//from ww w  .j a va 2s. co m
+
+        Bitmap dest = Bitmap.createBitmap(newWidth, newHeight,
+                source.getConfig());
+        Canvas canvas = new Canvas(dest);
+        canvas.drawBitmap(source, null, targetRect, null);
+
+        return dest;
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(bitmap, 0, 0, null);
+        int centreX = (canvas.getWidth()  - bitmap.getWidth()) /2;
+
+        int centreY = (canvas.getHeight() - bitmap.getHeight()) /2;
+        canvas.drawBitmap(bitmap, centreX, centreY, null);
     }
 
     @Override
@@ -58,6 +103,10 @@ public class PaintView extends View {
         FloodFill f = new FloodFill();
         f.floodFill(bitmap, new Point(x,y), targetColor, Common.COLOR_SELECTED);
         invalidate();
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
     public class FloodFill {
