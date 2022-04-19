@@ -6,33 +6,74 @@
     android:layout_height="match_parent"
     tools:context=".PaintActivity"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/activity_paint">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?android:actionBarSize"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:id="@+id/toolBar"/>
     </com.google.android.material.appbar.AppBarLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_weight="1"
+    >
     <com.example.coloringbook.widget.PaintView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/paint_view"/>
+        android:id="@+id/paint_view"
+
+        />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:gravity="center">
 
     <com.thebluealliance.spectrum.SpectrumPalette
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:spectrum_autoPadding="true"
-        app:spectrum_outlineWidth="2dp"
+        app:spectrum_outlineWidth="5dp"
+        android:layout_weight="1"
         app:spectrum_colors="@array/colors_array"
-        android:id="@+id/palette">
+        android:id="@+id/palette"
+        android:layout_margin="8dp"
+        app:spectrum_columnCount="6"
 
-    </com.thebluealliance.spectrum.SpectrumPalette>
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_undo_24"
+            android:onClick="undoLast"
+            android:background="@drawable/border"
+            android:theme="@style/Widget.MaterialComponents.Button"
+            android:layout_margin="4dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
 
 
 </LinearLayout>
