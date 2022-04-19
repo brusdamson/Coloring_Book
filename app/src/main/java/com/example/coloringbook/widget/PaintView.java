@@ -5,6 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -22,7 +25,9 @@ import androidx.annotation.Nullable;
 
 import com.example.coloringbook.common.Common;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class PaintView extends View {
@@ -35,14 +40,33 @@ public class PaintView extends View {
     private float mScaleFactor = 1.0f;
     private final static float mMinZoom = 1.0f;
     private final static float mMaxZoom = 2.0f;
+    private List<Bitmap> bitmapList = new ArrayList<>();
+    private Bitmap defaultBitmap = null;
     float oldX;
     float oldY;
+
+    public void undoLastAction() {
+        if (bitmapList.size() > 0){
+            bitmapList.remove(bitmapList.size() - 1);
+            if (bitmapList.size() > 0){
+                bitmap = bitmapList.get(bitmapList.size()-1);
+            }else{
+                bitmap = Bitmap.createBitmap(defaultBitmap);
+            }
+
+            invalidate();
+        }
+    }
+    private void addLastAction(Bitmap b){
+        bitmapList.add(b);
+    }
+
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
 
             mScaleFactor *= detector.getScaleFactor();
-            mScaleFactor = Math.max(mScaleFactor, Math.min(mScaleFactor, mMaxZoom));
+            mScaleFactor = Math.max(mMinZoom, Math.min(mScaleFactor, mMaxZoom));
             invalidate();
 
             return true;
@@ -58,23 +82,52 @@ public class PaintView extends View {
         mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
     }
 
+    public static Bitmap convertToBlackWhite(Bitmap bmp) {
+        int width = bmp.getWidth();
+        int height = bmp.getHeight();
+        int[] pixels = new int[width * height];
+        bmp.getPixels(pixels, 0, width, 0, 0, width, height);
 
+        int alpha = 0xFF << 24; // ?bitmap?24?
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                int grey = pixels[width * i + j];
+
+                int red = ((grey & 0x00FF0000) >> 16);
+                int green = ((grey & 0x0000FF00) >> 8);
+                int blue = (grey & 0x000000FF);
+
+                grey = (int) (red * 0.3 + green * 0.59 + blue * 0.11);
+                grey = alpha | (grey << 16) | (grey << 8) | grey;
+                pixels[width * i + j] = grey;
+            }
+        }
+        Bitmap newBmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        newBmp.setPixels(pixels, 0, width, 0, 0, width, height);
+        return newBmp;
+    }
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), Common.PICTURE_SELECTED);
-//        PaintView paintView = findViewById(R.id.paint_view);
-//        ViewGroup.LayoutParams params = paintView.getLayoutParams();
-//        params.width = (int)(paintView.getResources().getDisplayMetrics().density * 400);
-//        params.height = (int)(paintView.getResources().getDisplayMetrics().density * 50);
-//        paintView.setLayoutParams(params);
-
-
-//        int width = (int)(this.getResources().getDisplayMetrics().density*400);
-//        int height = (int)(this.getResources().getDisplayMetrics().density*400);
-//        bitmap = Bitmap.createScaledBitmap(srcBitmap, w,h,false);
-        bitmap = scaleCenterCrop(srcBitmap, h, w);
+        if (bitmap == null){
+            Bitmap srcBitmap = BitmapFactory.decodeResource(getResources(), Common.PICTURE_SELECTED);
+            bitmap = Bitmap.createScaledBitmap(srcBitmap, w, h, false);//scaleCenterCrop(srcBitmap, h, w);
+            for (int i = 0; i < bitmap.getWidth(); i++) {
+                for (int j = 0; j < bitmap.getHeight(); j++) {
+                    if (bitmap.getPixel(i,j) <= Color.BLACK){
+                        bitmap.setPixel(i,j,Color.BLACK);
+                    }
+                    else{
+                        bitmap.setPixel(i,j,Color.WHITE);
+                    }
+                }
+            }
+            if (defaultBitmap == null){
+                defaultBitmap = Bitmap.createBitmap(bitmap);
+            }
+        }
     }
+
     static public Bitmap scaleCenterCrop(Bitmap source, int newHeight,
                                          int newWidth) {
         int sourceWidth = source.getWidth();
@@ -95,9 +148,14 @@ public class PaintView extends View {
                 + scaledHeight);//from ww w  .j a va 2s. co m
 
         Bitmap dest = Bitmap.createBitmap(newWidth, newHeight,
-                source.getConfig());
+                Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(dest);
-        canvas.drawBitmap(source, null, targetRect, null);
+        Paint paint = new Paint();
+
+        ColorMatrix cm = new ColorMatrix();
+        cm.setSaturation(0);
+        paint.setColorFilter(new ColorMatrixColorFilter(cm));
+        canvas.drawBitmap(source, null, targetRect, paint);
 
         return dest;
     }
@@ -145,17 +203,23 @@ public class PaintView extends View {
     }
 
     private void paint(int x, int y, float oldx, float oldy) {
+        //Проверка чтобы не выходило за границы картинки
         if(x > bitmap.getWidth() || x < 0)
             return;
         if(y > bitmap.getHeight() || y < 0)
             return;
+        //Проверка на зум, чтобы не закрашивать при зуме
         if (oldx != refX || oldy != refY){
             return;
         }
         int targetColor = bitmap.getPixel(x,y);
-        FloodFill f = new FloodFill();
-        f.floodFill(bitmap, new Point(x,y), targetColor, Common.COLOR_SELECTED);
-        invalidate();
+        //Проверка чтобы не закрашивало черный цвет
+        if (targetColor != Color.BLACK){
+            FloodFill f = new FloodFill();
+            f.floodFill(bitmap, new Point(x,y), targetColor, Common.COLOR_SELECTED);
+            addLastAction(Bitmap.createBitmap(getBitmap()));
+            invalidate();
+        }
     }
 
     public Bitmap getBitmap() {

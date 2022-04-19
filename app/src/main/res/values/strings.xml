@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Coloring Book</string>
+    <string name="app_name">Hacolor</string>
     <string name="title">Hacolor</string>
     <string name="fish_image" />
     <string name="title_activity_detail">DetailActivity</string>
