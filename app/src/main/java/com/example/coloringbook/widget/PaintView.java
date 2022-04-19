@@ -20,6 +20,9 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -49,7 +52,10 @@ public class PaintView extends View {
     float oldY;
 
     public void undoLastAction() {
+        ImageButton imageButton = new ImageButton(getContext());
         if (bitmapList.size() > 0){
+            RotateAnimation rotateAnimation = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.rotate);
+            imageButton.startAnimation(rotateAnimation);
             bitmapList.remove(bitmapList.size() - 1);
             if (bitmapList.size() > 0){
                 bitmap = bitmapList.get(bitmapList.size()-1);
