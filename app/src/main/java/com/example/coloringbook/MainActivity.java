@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     GridView androidGridView;
     Integer[] imageIDs = {
-            R.drawable.bear_resized, R.drawable.bla, R.drawable.horse,
+            R.drawable.bear, R.drawable.bla, R.drawable.horse,
             R.drawable.lion, R.drawable.olenb, R.drawable.olenb2,
             R.drawable.one, R.drawable.tiger, R.drawable.example
     };
