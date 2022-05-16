@@ -23,7 +23,9 @@
         android:layout_marginTop="90dp"
         android:horizontalSpacing="30dp"
         android:numColumns="2"
-        android:verticalSpacing="30dp">
+        android:verticalSpacing="30dp"
+        android:elevation="50dp"
+        >
 
     </GridView>
 </RelativeLayout>
