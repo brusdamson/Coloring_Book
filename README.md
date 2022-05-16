@@ -1,4 +1,4 @@
-### Hacolor (Coloring Book App)
+#### Hacolor (Coloring Book App)
 
 ---
 
