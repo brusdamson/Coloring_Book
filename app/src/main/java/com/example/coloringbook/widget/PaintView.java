@@ -52,10 +52,7 @@ public class PaintView extends View {
     float oldY;
 
     public void undoLastAction() {
-        ImageButton imageButton = new ImageButton(getContext());
         if (bitmapList.size() > 0){
-            RotateAnimation rotateAnimation = (RotateAnimation) AnimationUtils.loadAnimation(getContext(), R.anim.rotate);
-            imageButton.startAnimation(rotateAnimation);
             bitmapList.remove(bitmapList.size() - 1);
             if (bitmapList.size() > 0){
                 bitmap = bitmapList.get(bitmapList.size()-1);
