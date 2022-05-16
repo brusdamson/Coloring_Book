@@ -16,7 +16,7 @@
 - Мурахаз Айдер  (UI дизайнер): https://github.com/aydep
 
 ---
-![Screenshot](\screenshots\screen1.png)
+![Screenshot](/screenshots/screen1.png)
 ---
-![Screenshot](\screenshots\screen2.png)
+![Screenshot](/screenshots/screen2.png)
 =============================
