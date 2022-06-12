@@ -5,8 +5,35 @@
       <map>
         <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable-v24/background.xml" value="0.1935" />
         <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1935" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable-v24/pic.xml" value="0.18" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable/20c97e6b_4__traced_ (1).xml" value="0.1935" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable/20c97e6b_7__traced_.xml" value="0.18" />
         <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1935" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable/picture.xml" value="0.18" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable/picture2.xml" value="0.18" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/drawable/picture23.xml" value="0.18" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/layout/activity_detail.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/layout/activity_paint.xml" value="0.22" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/layout/list_item.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1859375" />
+        <entry key="..\:/Users/Brus/AndroidStudioProjects/ColoringBook/app/src/main/res/menu/menu.xml" value="0.1859375" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable-v24/pic.xml" value="0.128" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/animation_button.xml" value="0.121" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/back_button.xml" value="0.2185" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/back_button_24.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/border.xml" value="0.1235" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.121" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/ic_baseline_undo_24.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/drawable/roundedbutton.xml" value="0.1415" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Nikita/AndroidStudioProjects/Coloring_Book/app/src/main/res/layout/activity_paint.xml" value="0.4" />
       </map>
     </option>
   </component>
